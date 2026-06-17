@@ -1,10 +1,9 @@
 import express from "express";
+import cors from "cors";
 import giftsRouter from "./routes/gifts.ts";
 
 const app: express.Express = express();
-
-app.use("/public", express.static("./public"));
-app.use("/scripts", express.static("./public/scripts"));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res
