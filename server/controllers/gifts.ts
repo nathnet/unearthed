@@ -10,6 +10,21 @@ const getGifts = async (_req: Request, res: Response) => {
   }
 };
 
+const getGiftById = async (req: Request, res: Response) => {
+  try {
+    const giftId = req.params.giftId;
+    const result = await pool.query(`
+      SELECT name, pricePoint, audience, image, description, submittedBy, submittedOn
+      FROM gifts
+      WHERE id = $1
+      `, [giftId]);
+    res.status(200).json(result.rows[0]);
+  } catch (error) {
+    // res.status(409).json( { error: error.message instanceof Error ? error.message : "Unknown error"} )
+  }
+}
+
 export default {
-  getGifts
+  getGifts,
+  getGiftById
 }
