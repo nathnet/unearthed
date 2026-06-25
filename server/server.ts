@@ -4,6 +4,7 @@ import giftsRouter from "./routes/gifts.ts";
 
 const app: express.Express = express();
 app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res
